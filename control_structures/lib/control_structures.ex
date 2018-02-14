@@ -12,9 +12,9 @@ defmodule ControlStructures do
       3
 
   """
-  def fibonacci(n) do
-    raise "not implemented yet"
-  end
+  def fibonacci(0), do: 0
+  def fibonacci(1), do: 1
+  def fibonacci(n), do: fibonacci(n - 1) + fibonacci(n - 2)
 
   @doc """
   Should return the length of the given `list`.
@@ -29,7 +29,6 @@ defmodule ControlStructures do
       3
 
   """
-  def list_length(list) do
-    raise "not implemented yet"
-  end
+  def list_length([]), do: 0
+  def list_length([_ | rest]), do: 1 + list_length(rest)
 end
