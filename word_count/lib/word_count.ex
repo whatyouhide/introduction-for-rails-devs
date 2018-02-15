@@ -4,6 +4,10 @@ defmodule WordCount do
   Words are compared case-insensitively.
   """
   def count(sentence) do
-    raise "not implemented yet"
+    sentence
+    |> String.downcase()
+    |> String.split(~r/([^\w-]|_)+/u, trim: true)
+    |> Enum.group_by(&(&1), fn _ -> 1 end)
+    |> Map.new(fn {key, value} -> {key, Enum.count(value)} end)
   end
 end

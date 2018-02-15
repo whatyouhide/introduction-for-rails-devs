@@ -8,9 +8,24 @@ defmodule Bob do
   He answers 'Whatever.' to anything else.
   """
   def hey(input) do
+    shouting? = shouting?(input)
+    question? = String.ends_with?(input, "?")
+
     cond do
+      shouting? and question? ->
+        "Calm down, I know what I'm doing!"
+      question? ->
+        "Sure."
+      shouting? ->
+        "Whoa, chill out!"
+      String.trim(input) == "" ->
+        "Fine. Be that way!"
       true ->
-        raise "not implemented yet"
+        "Whatever."
     end
+  end
+
+  defp shouting?(input) do
+    String.upcase(input) == input and String.match?(input, ~r/\p{L}/u)
   end
 end
